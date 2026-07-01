@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passport Photo Maker — 600×800, 10–25KB</title>
+<meta name="description" content="Auto background remove karke white background wali passport size photo (600x800px, 10-25KB) banayein.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a2b4c">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stamp-corner tl"></div>
+<div class="stamp-corner br"></div>
+
+<header class="site-header">
+  <div class="crest">✦</div>
+  <h1>Passport Photo Maker</h1>
+  <p class="subtitle">Background auto-remove • White background • 600×800px • 10–25KB</p>
+</header>
+
+<main class="wrap">
+
+  <section class="panel upload-panel" id="uploadPanel">
+    <label for="fileInput" class="dropzone" id="dropzone">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 16V4M12 4l-4 4M12 4l4 4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="drop-text">Photo yahan choose karein</span>
+      <span class="drop-sub">JPG ya PNG — chehra saaf dikhna chahiye</span>
+    </label>
+    <input type="file" id="fileInput" accept="image/*" hidden>
+  </section>
+
+  <section class="panel process-panel hidden" id="processPanel">
+
+    <div class="canvas-row">
+      <div class="canvas-box">
+        <span class="canvas-label">Original</span>
+        <canvas id="sourceCanvas"></canvas>
+      </div>
+      <div class="arrow">→</div>
+      <div class="canvas-box">
+        <span class="canvas-label">Passport Result</span>
+        <canvas id="resultCanvas" width="600" height="800"></canvas>
+      </div>
+    </div>
+
+    <div class="status-line" id="statusLine">Model load ho raha hai...</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="controls">
+      <button id="retryBtn" class="btn ghost">Doosri photo choose karein</button>
+      <button id="downloadBtn" class="btn primary" disabled>Download Photo</button>
+    </div>
+
+    <div class="info-strip" id="infoStrip"></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Sab kuch aapke browser mein hi process hota hai — koi photo server par upload nahi hoti.</p>
+</footer>
+
+<!-- MediaPipe Selfie Segmentation (background removal model) -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</body>
+</html>
